@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 static VALUE object_second_cext_call(VALUE rb_self) {
-	printf("Second C extension call");
+	printf("Second C extension call\n");
 	return Qnil;
 }
 

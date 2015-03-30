@@ -2,6 +2,7 @@ require 'mygem/pallendrome'
 
 def first_ruby_call
 	puts "Calling ruby pallendrome with 'hello'"
-	pallendrome "hello"	
+	result = pallendrome "hello"
+	puts "Ruby result: "+result.to_s	
 end
 
