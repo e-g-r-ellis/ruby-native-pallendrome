@@ -1,5 +1,5 @@
 #!/bin/env ruby
-require 'mygem/pallendrome'
+require 'mygem/pallendromelib'
 require 'mygem/mysecondrubylib'
 
 first_ruby_call
