@@ -4,12 +4,15 @@
 
 // Create C pallendrome
 char* pallendrome(char* input) {
+	int pallendrome_length;
+	int length = 0;
+	int i;
+
 	printf("C pallendrome called with: %s\n", input);;
-        int length = 0;
-        for (int i = 0; input[i] != '\0'; i++)
+        for (i = 0; input[i] != '\0'; i++)
                 length++;
 
-        int pallendrome_length = length * 2 - 1;
+	pallendrome_length = length * 2 - 1;
 
         char* result = calloc(pallendrome_length + 1, sizeof(char)); // One more character (null terminator)
         char* work = result;
