@@ -7,6 +7,8 @@ char* pallendrome(char* input) {
 	int pallendrome_length;
 	int length = 0;
 	int i;
+	char *result;
+	char *work;
 
 	printf("C pallendrome called with: %s\n", input);;
         for (i = 0; input[i] != '\0'; i++)
@@ -14,9 +16,9 @@ char* pallendrome(char* input) {
 
 	pallendrome_length = length * 2 - 1;
 
-        char* result = calloc(pallendrome_length + 1, sizeof(char)); // One more character (null terminator)
-        char* work = result;
-        for (int i = 0; i < pallendrome_length; i++) {
+        result = calloc(pallendrome_length + 1, sizeof(char)); // One more character (null terminator)
+        work = result;
+        for (i = 0; i < pallendrome_length; i++) {
                 *work = *input;
                 work++;
                 if (i < length-1) {
@@ -31,14 +33,15 @@ char* pallendrome(char* input) {
 
 // Handle ruby types
 static VALUE ruby_pallendrome(VALUE rb_self, VALUE rb_input) {
+	char *c_string;
+	char *c_pallendrome;
 	printf("ruby_pallendrome called.\n");
 	VALUE result = Qnil;
 	Check_Type(rb_input, T_STRING);
 	
-	char * c_string = RSTRING_PTR(rb_input);
-	char * c_pallendrome = pallendrome(c_string);
+	c_string = RSTRING_PTR(rb_input);
+	c_pallendrome = pallendrome(c_string);
 	result = rb_str_new2(c_pallendrome);
-	// Not sure if this is required, not mentioned on https://github.com/ruby/ruby/blob/trunk/doc/extension.rdoc
 	free(c_pallendrome);
 	
 	return result;
@@ -51,7 +54,8 @@ void Init_pallendrome() {
 }
 
 int main(int argc, char *argv[]) {
-	for (int i = 1; i < argc; i++) {
+	int i;
+	for (i = 1; i < argc; i++) {
 		printf("%s\n",pallendrome(argv[i]));
 	}
 }
